@@ -1,16 +1,40 @@
-# React + Vite
+# Calculadora Tributária NAF - Comparativo PF vs PJ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto consiste em uma aplicação web desenvolvida para o Núcleo de Apoio Contábil e Fiscal (NAF), com o objetivo de realizar o comparativo tributário entre os regimes de Pessoa Física (PF) e Pessoa Jurídica (PJ).
 
-Currently, two official plugins are available:
+O sistema auxilia profissionais de áreas como **Psicologia, Arquitetura e Advocacia** a identificarem a opção tributária mais vantajosa com base nas regras vigentes em 2026.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🏗️ Estrutura do Projeto
 
-## React Compiler
+O projeto é organizado de forma modular para separar as responsabilidades de interface, lógica de servidor e documentação:
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **/frontend**: Interface do usuário desenvolvida em ReactJS com Vite e Tailwind CSS (em desenvolvimento).
+* **/backend**: Servidor Node.js para processamento de dados e integrações futuras (em desenvolvimento).
+* **/docs**: Documentação técnica do projeto, incluindo requisitos e especificações de design.
 
-## Expanding the ESLint configuration
+## 🛠️ Tecnologias Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** ReactJS (Componentes funcionais e Hooks), Vite, Tailwind CSS.
+- **Gestão de Formulários:** React Hook Form.
+- **Documentação:** Especificação Técnica NAF.
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+- Node.js instalado.
+- Gerenciador de pacotes npm.
+
+### Frontend
+1. Acesse o diretório: `cd frontend`
+2. Instale as dependências: `npm install`
+3. Inicie o ambiente de desenvolvimento: `npm run dev`
+
+## 📄 Funcionalidades Principais
+- Cálculo de encargos tributários para PF e PJ.
+- Comparativo em tempo real para as profissões de Psicólogo, Arquiteto e Advogado.
+- Geração de relatório detalhado em formato PDF.
+- Interface clara e modular para fácil manutenção.
+
+## 👥 Autor
+- **Alisson Almeida de Oliveira**
+- Projeto desenvolvido para a disciplina de Desenvolvimento de Aplicações de Frameworks Web.
