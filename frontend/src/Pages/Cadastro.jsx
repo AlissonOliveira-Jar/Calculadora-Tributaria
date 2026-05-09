@@ -178,7 +178,7 @@ export default function Cadastro() {
         >
           Já tem conta?{" "}
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/login")}
             className="text-naf-red hover:underline font-bold bg-transparent border-none p-0 cursor-pointer"
           >
             Faça login
