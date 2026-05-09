@@ -92,7 +92,7 @@ export default function Comparativo() {
     }
 
     const salario28 = rendaNum * 0.28;
-    const salarioMin = 1518;
+    const salarioMin = 1621;
     const salarioBase = salario28 < salarioMin ? salarioMin : salario28;
     const inss = salarioBase * 0.11;
     const totalPJ = simples + inss;
