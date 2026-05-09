@@ -45,7 +45,18 @@ export default function CalculoPJ() {
       return;
     }
 
-    const simples = rendaNum * 0.06;
+    let simples = 0;
+    let aliquota = "";
+
+    if (profissao === "advogado") {
+      simples = rendaNum * 0.045; // Anexo IV: 4,5%
+      aliquota = "4,5%";
+    } else {
+      // Psicólogo e Arquiteto
+      simples = rendaNum * 0.06; // Anexo III (com Fator R): 6%
+      aliquota = "6%";
+    }
+
     const salario28 = rendaNum * 0.28;
     const salarioMin = 1518;
     const salarioBase = salario28 < salarioMin ? salarioMin : salario28;
@@ -54,6 +65,7 @@ export default function CalculoPJ() {
 
     setResultado({
       simples,
+      aliquota,
       salarioBase,
       inss,
       total,
@@ -109,6 +121,8 @@ export default function CalculoPJ() {
                 className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-500 outline-none transition delay-[80ms] duration-[400ms] ease-in-out"
               >
                 <option value="psicologo">Psicólogo(a)</option>
+                <option value="arquiteto">Arquiteto(a)</option>
+                <option value="advogado">Advogado(a)</option>
               </select>
             </div>
 
@@ -176,7 +190,7 @@ export default function CalculoPJ() {
                 ) : (
                   <>
                     <p>
-                      <strong>Simples Nacional (6%):</strong> R${" "}
+                      <strong>Simples Nacional ({resultado.aliquota}):</strong> R${" "}
                       {resultado.simples.toFixed(2)}
                     </p>
                     <p>
