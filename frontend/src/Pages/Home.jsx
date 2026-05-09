@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
+  const token = localStorage.getItem("token");
 
-    const token = localStorage.getItem("token");
-    useEffect(() => {
-      if (!token) {
-        navigate("/");
-      }
-    }, [token, navigate])
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,103 +26,65 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen bg-naf-light">
       <Navbar />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b to-blue-600 via-sky-600 from-sky-300">
+      
+      <main className="flex-grow flex flex-col items-center justify-center p-6">
         <div
-          className={`w-full max-w-lg p-8 bg-white rounded-2xl shadow-lg text-center transition-all duration-[700ms] ease-out delay-[200ms]
-          ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
+          className={`w-full max-w-lg p-10 bg-white rounded-3xl shadow-xl border border-naf-gray/20 text-center transition-all duration-[700ms] ease-out delay-[200ms]
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
           <h1
-            className={`text-3xl font-bold text-gray-800 mb-6 transition-all duration-[700ms] ease-out delay-[400ms]
-          ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
-          }`}
+            className={`text-3xl font-bold text-naf-blue mb-4 transition-all duration-[700ms] ease-out delay-[400ms]
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
           >
-          Bem-vindo a Calculadora Tributária
+            Calculadora Tributária
           </h1>
 
           <p
-            className={`text-gray-600 mb-8 transition-all duration-[700ms] ease-out delay-[600ms]
-            ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
-            }`}
+            className={`text-naf-gray mb-10 text-sm font-medium transition-all duration-[700ms] ease-out delay-[600ms]
+            ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           >
-            Escolha abaixo o tipo de cálculo que deseja realizar:
+            Selecione a modalidade de cálculo que deseja realizar:
           </p>
 
-          <div>
-            <div className="grid gap-4 transition delay-[80ms] duration-[400ms] ease-in-out hover:scale-102 p-1">
-              <button
-                onClick={() => handleNavigate("/calculo-pf")}
-                className={`w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 text-lg font-medium shadow-lg hover:shadow-xl scale-105 transform transition-all duration-[700ms] ease-out hover:duration-[250ms] delay-[700ms] 
-              ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
-              >
-                Imposto de Renda - Pessoa Física
-              </button>
-            </div>
-            <div className="grid gap-4 transition delay-[80ms] duration-[400ms] ease-in-out hover:scale-102 p-1">
-              <button
-                onClick={() => handleNavigate("/calculo-pj")}
-                className={`w-full bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 text-lg font-medium shadow-lg hover:shadow-xl scale-105 transform transition-all duration-[700ms] ease-out hover:duration-[250ms] delay-[900ms]
-              ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
-              >
-                Imposto de Renda - Pessoa Jurídica
-              </button>
-            </div>
+          <div className="space-y-4">
+            <button
+              onClick={() => handleNavigate("/calculo-pf")}
+              className={`w-full bg-naf-blue text-white py-4 rounded-xl hover:bg-[#0c1825] text-lg font-medium shadow-md hover:shadow-lg transform transition-all duration-[400ms] hover:scale-105
+              ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 delay-[700ms]"}`}
+            >
+              Imposto de Renda - Pessoa Física
+            </button>
 
-            <div className="grid gap-4 transition delay-[80ms] duration-[400ms] ease-in-out hover:scale-102 p-1">
-              <button
-                onClick={() => handleNavigate("/comparativo")}
-                className={`w-full bg-purple-600 text-white py-3 rounded-xl hover:bg-purple-700 text-lg font-medium shadow-lg hover:shadow-xl scale-105 transform transition-all duration-[700ms] ease-out hover:duration-[250ms] delay-[1100ms]
-              ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
-              >
-                Comparativo PF vs PJ
-              </button>
-            </div>
+            <button
+              onClick={() => handleNavigate("/calculo-pj")}
+              className={`w-full bg-naf-blue text-white py-4 rounded-xl hover:bg-[#0c1825] text-lg font-medium shadow-md hover:shadow-lg transform transition-all duration-[400ms] hover:scale-105
+              ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 delay-[850ms]"}`}
+            >
+              Imposto de Renda - Pessoa Jurídica
+            </button>
 
-            <div className="grid gap-4 transition delay-[80ms] duration-[400ms] ease-in-out hover:scale-102 p-1">
-              <button
-                onClick={() => handleNavigate("/Ajuda")}
-                className={`w-full bg-yellow-500 text-white py-3 rounded-xl hover:bg-yellow-600 text-lg font-medium shadow-lg hover:shadow-xl scale-105 transform transition-all duration-[700ms] ease-out hover:duration-[250ms] delay-[1300ms]
-              ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
-              >
-                Ajuda / Informações
-              </button>
-            </div>
+            <button
+              onClick={() => handleNavigate("/comparativo")}
+              className={`w-full bg-naf-red text-white py-4 rounded-xl hover:bg-[#a62b18] text-lg font-bold shadow-md hover:shadow-lg transform transition-all duration-[400ms] hover:scale-105
+              ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 delay-[1000ms]"}`}
+            >
+              Comparativo PF vs PJ
+            </button>
+
+            <button
+              onClick={() => handleNavigate("/Ajuda")}
+              className={`w-full bg-white border-2 border-naf-blue text-naf-blue py-3 rounded-xl hover:bg-naf-light text-base font-medium shadow-sm hover:shadow-md transform transition-all duration-[400ms] hover:scale-105 mt-2
+              ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 delay-[1150ms]"}`}
+            >
+              Ajuda / Informações
+            </button>
           </div>
-
-          <p
-            className={`mt-8 text-sm text-gray-500 transition-all duration-[700ms] ease-out delay-[1200ms] ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
-            }`}
-          >
-          {new Date().getFullYear()} Calculadora Tributária
-          </p>
         </div>
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }
