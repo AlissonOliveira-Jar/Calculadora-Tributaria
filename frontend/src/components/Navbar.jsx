@@ -4,69 +4,71 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar() {
   const navigate = useNavigate();
 
-    const handleLogout = () => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      navigate("/");
-    }
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/");
+  };
 
   return (
-    <nav className="w-full bg-white shadow-md">
+    <nav className="w-full bg-naf-blue shadow-lg border-b border-naf-gray/20">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0 text-lg font-bold text-gray-800">Calculadora Tributária</div>
+          <div className="flex-shrink-0 text-xl font-bold text-white tracking-wide">
+            Calculadora Tributária
+          </div>
 
           <div className="flex items-center">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
               <button
                 onClick={() => navigate('/Home')}
-                className="px-3 py-2 rounded-md text-sm font-medium text-black hover:bg-sky-600 hover:scale-105 transition-all duration-[500ms] ease-in-out"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300"
               >
                 Página Inicial
               </button>
 
-              <div className="h-6 w-px bg-gray-300" />
+              <div className="h-5 w-px bg-naf-gray/50 mx-1" />
 
               <button
                 onClick={() => navigate('/calculo-pf')}
-                className="px-3 py-2 rounded-md text-sm font-medium text-black hover:bg-sky-600 hover:scale-105 transition-all duration-[500ms] ease-in-out"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300"
               >
-                Calculo PF
+                Cálculo PF
               </button>
 
-              <div className="h-6 w-px bg-gray-300" />
+              <div className="h-5 w-px bg-naf-gray/50 mx-1" />
 
               <button
                 onClick={() => navigate('/calculo-pj')}
-                className="px-3 py-2 rounded-md text-sm font-medium text-black hover:bg-sky-600 hover:scale-105 transition-all duration-[500ms] ease-in-out"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300"
               >
-                Calculo PJ
+                Cálculo PJ
               </button>
 
-              <div className="h-6 w-px bg-gray-300" />
+              <div className="h-5 w-px bg-naf-gray/50 mx-1" />
 
               <button
                 onClick={() => navigate('/comparativo')}
-                className="px-3 py-2 rounded-md text-sm font-medium text-black hover:bg-sky-600 hover:scale-105 transition-all duration-[500ms] ease-in-out"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300"
               >
                 Comparativo
               </button>
 
-              <div className="h-6 w-px bg-gray-300" />
+              <div className="h-5 w-px bg-naf-gray/50 mx-1" />
 
               <button
                 onClick={() => navigate('/Ajuda')}
-                className="px-3 py-2 rounded-md text-sm font-medium text-black hover:bg-sky-600 hover:scale-105 transition-all duration-[500ms] ease-in-out"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300"
               >
                 Ajuda
               </button>
             </div>
 
             <button
-              onClick={() => handleLogout() }
-              className="ml-6 px-3 py-2 bg-red-500 text-white rounded-md text-sm font-medium hover:bg-red-600 hover:scale-105 transition-all duration-[500ms] ease-in-out"
+              onClick={() => handleLogout()}
+              className="ml-6 px-4 py-2 bg-transparent border-2 border-naf-red text-naf-light rounded-lg text-sm font-bold hover:bg-naf-red hover:text-white hover:scale-105 transition-all duration-300"
             >
-              Deslogar
+              Sair
             </button>
           </div>
         </div>
@@ -74,4 +76,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
