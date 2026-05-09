@@ -89,7 +89,7 @@ export default function Home() {
                   Cálculo baseado na tabela do IRPF mensal. Permite abater despesas dedutíveis (Livro Caixa) da sua base de cálculo.
                 </p>
               </div>
-              <button onClick={() => handleNavigate("/calculo-pf")} className="w-full py-3 bg-naf-blue text-white font-medium rounded-xl hover:bg-[#0c1825] transition-colors">
+              <button onClick={() => handleNavigate("/calculo-pf")} className="w-full py-3 bg-naf-blue text-white font-medium rounded-xl hover:bg-[#0c1825] transition-colors cursor-pointer">
                 Simular PF
               </button>
             </div>
@@ -105,7 +105,7 @@ export default function Home() {
                   Cálculo focado no Simples Nacional e Contribuição Previdenciária (INSS) sobre o pró-labore da sua categoria.
                 </p>
               </div>
-              <button onClick={() => handleNavigate("/calculo-pj")} className="w-full py-3 bg-naf-blue text-white font-medium rounded-xl hover:bg-[#0c1825] transition-colors">
+              <button onClick={() => handleNavigate("/calculo-pj")} className="w-full py-3 bg-naf-blue text-white font-medium rounded-xl hover:bg-[#0c1825] transition-colors cursor-pointer">
                 Simular PJ
               </button>
             </div>
@@ -122,7 +122,7 @@ export default function Home() {
                   Analise PF e PJ lado a lado. Descubra a opção mais vantajosa para sua renda e gere um relatório em PDF.
                 </p>
               </div>
-              <button onClick={() => handleNavigate("/comparativo")} className="w-full py-3 bg-naf-red text-white font-bold rounded-xl hover:bg-[#a62b18] transition-colors">
+              <button onClick={() => handleNavigate("/comparativo")} className="w-full py-3 bg-naf-red text-white font-bold rounded-xl hover:bg-[#a62b18] transition-colors cursor-pointer">
                 Gerar Comparativo
               </button>
             </div>
@@ -249,7 +249,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={enviando}
-              className={`w-full bg-naf-blue text-white py-3 rounded-xl hover:bg-[#0c1825] transition-all duration-[400ms] ease-out text-base font-bold shadow-md ${enviando ? 'opacity-70 cursor-not-allowed' : 'hover:scale-[1.02]'}`}
+              className={`cursor-pointer w-full bg-naf-blue text-white py-3 rounded-xl hover:bg-[#0c1825] transition-all duration-[400ms] ease-out text-base font-bold shadow-md ${enviando ? 'opacity-70 cursor-not-allowed' : 'hover:scale-[1.02]'}`}
             >
               {enviando ? "Enviando para o NAF..." : "Enviar Mensagem"}
             </button>
