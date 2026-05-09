@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function RecuperarSenha() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,81 +35,84 @@ export default function RecuperarSenha() {
 
     setError("");
     console.log("Recuperação solicitada para:", email);
-    alert(
-      "Se este email estiver cadastrado, enviaremos instruções de recuperação."
-    );
+    alert("Se este email estiver cadastrado, enviaremos instruções de recuperação em instantes.");
+    navigate("/");
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b to-blue-600 via-sky-600 from-sky-300">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-naf-light p-4">
+      <h1
+        className={`text-3xl font-bold text-center mb-6 text-naf-blue transition-all duration-[700ms] ease-out delay-[100ms]
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}
+      >
+        CALCULADORA DE IMPOSTO DE RENDA
+      </h1>
+
       <div
-        className={`w-full max-w-sm p-8 bg-white rounded-2xl shadow-lg transition-all duration-[700ms] ease-out
+        className={`w-full max-w-sm p-8 bg-white rounded-2xl shadow-xl border border-naf-gray/30 transition-all duration-[700ms] ease-out
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
       >
         <h2
-          className={`text-2xl font-bold text-center mb-6 text-gray-800 transition-all duration-[700ms] ease-out delay-[200ms]
+          className={`text-2xl font-bold text-center mb-2 text-naf-blue transition-all duration-[700ms] ease-out delay-[200ms]
             ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
         >
           Recuperar Senha
         </h2>
 
         <p
-          className={`text-center text-sm text-gray-600 mb-6 transition-all duration-[700ms] ease-out delay-[300ms]
+          className={`text-center text-sm text-naf-gray mb-6 transition-all duration-[700ms] ease-out delay-[300ms]
             ${isVisible ? "opacity-100" : "opacity-0"}`}
         >
-          Informe seu email e enviaremos as instruções para redefinir sua senha.
+          Informe seu email e enviaremos as instruções para redefinir sua senha de acesso.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-          {/* Campo Email */}
           <div
-            className={`transition-all duration-[700ms] ease-out delay-[500ms]
+            className={`transition-all duration-[700ms] ease-out delay-[400ms]
               ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
           >
-            <label className="block mb-2 text-sm font-medium text-gray-700">
-              Email
+            <label className="block mb-2 text-sm font-medium text-naf-blue">
+              Email Cadastrado
             </label>
             <input
               type="email"
               placeholder="Digite seu email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:-translate-y-1 hover:scale-102"
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (error) setError("");
+              }}
+              className="w-full px-4 py-2 border border-naf-gray rounded-xl focus:ring-2 focus:ring-naf-red focus:border-transparent outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:shadow-sm"
             />
-            {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+            {error && <p className="mt-1 text-sm text-naf-red font-medium">{error}</p>}
           </div>
 
           <div
-            className={`transition-all duration-[700ms] ease-out delay-[700ms]
+            className={`transition-all duration-[700ms] ease-out delay-[500ms]
               ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
           >
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition duration-[250ms] ease-in-out hover:scale-102"
+              className="w-full bg-naf-blue text-white font-bold py-3 rounded-xl hover:bg-[#0c1825] transition duration-[250ms] ease-in-out hover:scale-105 shadow-md cursor-pointer"
             >
-              Enviar
+              Enviar Instruções
             </button>
           </div>
         </form>
 
         <p
-          className={`text-center text-sm text-gray-600 mt-4 transition-all duration-[700ms] ease-out delay-[850ms]
+          className={`text-center text-sm text-naf-gray mt-6 transition-all duration-[700ms] ease-out delay-[600ms]
             ${isVisible ? "opacity-100" : "opacity-0"}`}
         >
           Lembrou sua senha?{" "}
-          <a href="/" className="text-blue-600 hover:underline">
+          <button
+            onClick={() => navigate("/")}
+            className="text-naf-red hover:underline font-bold bg-transparent border-none p-0 cursor-pointer"
+          >
             Faça login
-          </a>
+          </button>
         </p>
       </div>
-
-      <h2
-        className={`block mb-2 mt-6 text-base font-medium text-black p-1 transition-all duration-[700ms] ease-out delay-[1000ms] ${
-          isVisible ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        Desenvolvido por: Irmãos Metralha
-      </h2>
     </div>
   );
 }

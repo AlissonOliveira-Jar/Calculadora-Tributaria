@@ -30,46 +30,20 @@ export default function Cadastro() {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  const formErrors = validateForm();
+    e.preventDefault();
+    const formErrors = validateForm();
 
-  if (Object.keys(formErrors).length > 0) {
-    setErrors(formErrors);
-    return;
-  }
-  setErrors({});
-
-  try {
-    console.log("Enviando dados para o backend:", { name, email, password });
-    
-    const response = await fetch('http://localhost:3000/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        nome: name,
-        email: email,
-        senha: password
-      })
-    });
-
-    const data = await response.json();
-    
-    if (response.ok) {
-      alert("Cadastro bem-sucedido! Faça o login para prosseguir.");
-      console.log("Usuário cadastrado com ID:", data.userId);
-      navigate("/");
-    } else {
-      // Mostra o erro retornado pelo backend
-      alert(`Erro no cadastro: ${data.message}`);
-      console.error("Erro do backend:", data);
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
     }
-  } catch (error) {
-    console.error("Erro ao conectar com o servidor:", error);
-    alert("Erro ao conectar com o servidor. Verifique se o backend está rodando.");
-  }
-};
+    setErrors({});
+
+    // MOCK DE CADASTRO TEMPORÁRIO
+    console.log("Simulando cadastro para:", name, email);
+    alert("Cadastro simulado com sucesso! Agora você pode fazer o login.");
+    navigate("/");
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -80,53 +54,53 @@ export default function Cadastro() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b to-blue-600 via-sky-600 from-sky-300">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-naf-light p-4">
+      <h1
+        className={`text-3xl font-bold text-center mb-6 text-naf-blue transition-all duration-[700ms] ease-out delay-[100ms]
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}
+      >
+        CALCULADORA DE IMPOSTO DE RENDA
+      </h1>
+
       <div
-        className={`w-full max-w-sm p-8 bg-white rounded-2xl shadow-lg transition-all duration-[700ms] ease-out
-          ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }
-        `}
+        className={`w-full max-w-sm p-8 bg-white rounded-2xl shadow-xl border border-naf-gray/30 transition-all duration-[700ms] ease-out
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
       >
         <h2
-          className={`text-2xl font-bold text-center mb-6 text-gray-800 trasition-all duration-[700ms] ease-out delay-[100ms] ${
-            isVisible ? "opacity-100 translate-0" : "opacity-0 translate-y-5"
+          className={`text-2xl font-bold text-center mb-6 text-naf-blue transition-all duration-[700ms] ease-out delay-[200ms] ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
           }`}
         >
-          Cadastro
+          Criar Conta
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+        <form onSubmit={handleSubmit} className="space-y-4" noValidate>
           <div
-            className={`transition-all duration-[700ms] ease-out delay-[400ms] ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-5"
+            className={`transition-all duration-[700ms] ease-out delay-[300ms] ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
-            <label className="block mb-2 text-sm font-medium text-gray-700">
-              Nome
+            <label className="block mb-1 text-sm font-medium text-naf-blue">
+              Nome Completo
             </label>
             <input
               type="text"
               placeholder="Digite seu nome"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:-translate-y-1 hover:scale-102"
+              className="w-full px-4 py-2 border border-naf-gray rounded-xl focus:ring-2 focus:ring-naf-red focus:border-transparent outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:shadow-sm"
             />
             {errors.name && (
-              <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+              <p className="mt-1 text-xs text-naf-red font-medium">{errors.name}</p>
             )}
           </div>
 
           <div
-            className={`transition-all duration-[700ms] ease-out delay-[600ms] ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-5"
+            className={`transition-all duration-[700ms] ease-out delay-[400ms] ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
-            <label className="block mb-2 text-sm font-medium text-gray-700">
+            <label className="block mb-1 text-sm font-medium text-naf-blue">
               Email
             </label>
             <input
@@ -134,94 +108,83 @@ export default function Cadastro() {
               placeholder="Digite seu email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:-translate-y-1 hover:scale-102"
+              className="w-full px-4 py-2 border border-naf-gray rounded-xl focus:ring-2 focus:ring-naf-red focus:border-transparent outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:shadow-sm"
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+              <p className="mt-1 text-xs text-naf-red font-medium">{errors.email}</p>
             )}
           </div>
 
           <div
-            className={`transition-all duration-[700ms] ease-out delay-[800ms] ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-5"
+            className={`transition-all duration-[700ms] ease-out delay-[500ms] ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
-            <label className="block mb-2 text-sm font-medium text-gray-700">
+            <label className="block mb-1 text-sm font-medium text-naf-blue">
               Senha
             </label>
             <input
               type="password"
-              placeholder="Digite sua senha"
+              placeholder="Crie uma senha segura"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:-translate-y-1 hover:scale-102"
+              className="w-full px-4 py-2 border border-naf-gray rounded-xl focus:ring-2 focus:ring-naf-red focus:border-transparent outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:shadow-sm"
             />
             {errors.password && (
-              <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+              <p className="mt-1 text-xs text-naf-red font-medium">{errors.password}</p>
             )}
           </div>
 
           <div
-            className={`transition-all duration-[700ms] ease-out delay-[1000ms] ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-5"
+            className={`transition-all duration-[700ms] ease-out delay-[600ms] ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
-            <label className="block mb-2 text-sm font-medium text-gray-700">
+            <label className="block mb-1 text-sm font-medium text-naf-blue">
               Confirmar Senha
             </label>
             <input
               type="password"
-              placeholder="Confirme sua senha"
+              placeholder="Repita a senha"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:-translate-y-1 hover:scale-102"
+              className="w-full px-4 py-2 border border-naf-gray rounded-xl focus:ring-2 focus:ring-naf-red focus:border-transparent outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:shadow-sm"
             />
             {errors.confirmPassword && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-xs text-naf-red font-medium">
                 {errors.confirmPassword}
               </p>
             )}
           </div>
 
           <div
-            className={`transition-all duration-[700ms] ease-out delay-[1200ms] ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-5"
+            className={`pt-2 transition-all duration-[700ms] ease-out delay-[700ms] ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition delay-[80ms] duration-[400ms] ease-in-out hover:scale-102"
+              className="w-full bg-naf-red text-white font-bold py-3 rounded-xl hover:bg-[#a62b18] transition delay-[80ms] duration-[400ms] ease-in-out hover:scale-105 shadow-md cursor-pointer"
             >
               Cadastrar
             </button>
           </div>
         </form>
 
-        <p className={`pt-5 text-sm text-center transition-all duration-[800ms] ease-out delay-[1300ms] ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-5"
-            }`}>
+        <p
+          className={`text-center text-sm text-naf-gray mt-6 transition-all duration-[700ms] ease-out delay-[800ms] ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+          }`}
+        >
           Já tem conta?{" "}
-          <a href="/" className="text-blue-600 hover:underline">
+          <button
+            onClick={() => navigate("/")}
+            className="text-naf-red hover:underline font-bold bg-transparent border-none p-0 cursor-pointer"
+          >
             Faça login
-          </a>
+          </button>
         </p>
       </div>
-
-      <h2
-        className={`block mb-2 mt-6 text-base font-medium text-black p-1 transition-all duration-[700ms] ease-out delay-[1350ms] ${
-          isVisible ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        Desenvolvido por: Irmãos Metralha
-      </h2>
     </div>
   );
 }
