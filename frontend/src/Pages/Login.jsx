@@ -26,71 +26,43 @@ export default function Login() {
     return newErrors;
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  const formErrors = validateForm();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formErrors = validateForm();
 
-  if (Object.keys(formErrors).length > 0) {
-    setErrors(formErrors);
-    return;
-  }
-
-  setErrors({});
-
-  try {
-    console.log("Enviando dados para login:", { email, password });
-    
-    const response = await fetch('http://localhost:3000/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        senha: password
-      })
-    });
-
-    const data = await response.json();
-    
-    if (response.ok) {
-      console.log("Login bem-sucedido!", data);
-      alert("Login bem-sucedido!");
-      
-      // Salva o token no localStorage
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      
-      // Navega para a Home
-      navigate("/Home");
-    } else {
-      // Mostra o erro retornado pelo backend
-      alert(`Erro no login: ${data.message}`);
-      console.error("Erro do backend:", data);
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
     }
-  } catch (error) {
-    console.error("Erro ao conectar com o servidor:", error);
-    alert("Erro ao conectar com o servidor. Verifique se o backend está rodando.");
-  }
-};
+
+    setErrors({});
+
+    // MOCK DE LOGIN TEMPORÁRIO
+    console.log("Simulando login para:", email);
+    
+    localStorage.setItem('token', 'token-aprovado-np2');
+    localStorage.setItem('user', JSON.stringify({ email: email }));
+    
+    navigate("/Home");
+  };
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b to-blue-600 via-sky-600 from-sky-300 p-4"
+      className="flex flex-col items-center justify-center min-h-screen bg-naf-light p-4"
     >
       <h1
-        className={`text-3xl font-bold text-center mb-6 text-black transition-all duration-[700ms] ease-out delay-[200ms]
+        className={`text-3xl font-bold text-center mb-6 text-naf-blue transition-all duration-[700ms] ease-out delay-[200ms]
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}
       >
         CALCULADORA DE IMPOSTO DE RENDA
       </h1>
 
       <div
-        className={`w-full max-w-sm p-8 bg-white rounded-2xl shadow-xl transition-all duration-[700ms] ease-out delay-[300ms]
+        className={`w-full max-w-sm p-8 bg-white rounded-2xl shadow-xl transition-all duration-[700ms] ease-out delay-[300ms] border border-naf-gray/30
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
       >
         <h2
-          className={`text-2xl font-bold text-center mb-6 text-gray-800 transition-all duration-[700ms] ease-out delay-[500ms] ${
+          className={`text-2xl font-bold text-center mb-6 text-naf-blue transition-all duration-[700ms] ease-out delay-[500ms] ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
           }`}
         >
@@ -103,7 +75,7 @@ export default function Login() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
-            <label className="block mb-2 text-sm font-medium text-gray-700">
+            <label className="block mb-2 text-sm font-medium text-naf-blue">
               Email
             </label>
             <input
@@ -119,12 +91,10 @@ export default function Login() {
                   }
                 }
               }}
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:-translate-y-1 hover:scale-102"
+              className="w-full px-4 py-2 border border-naf-gray rounded-xl focus:ring-2 focus:ring-naf-red focus:border-transparent outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:-translate-y-1 hover:shadow-md"
             />
             <div>
-              <p
-                className="mt-1 text-sm text-red-600"
-              >
+              <p className="mt-1 text-sm text-naf-red font-medium">
                 {errors.email || " "}
               </p>
             </div>
@@ -135,7 +105,7 @@ export default function Login() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
-            <label className="block mb-2 text-sm font-medium text-gray-700">
+            <label className="block mb-2 text-sm font-medium text-naf-blue">
               Senha
             </label>
             <input
@@ -143,12 +113,10 @@ export default function Login() {
               placeholder="Digite sua senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:-translate-y-1 hover:scale-102"
+              className="w-full px-4 py-2 border border-naf-gray rounded-xl focus:ring-2 focus:ring-naf-red focus:border-transparent outline-none transition delay-[80ms] duration-[400ms] ease-in-out hover:-translate-y-1 hover:shadow-md"
             />
             {errors.password && (
-              <p
-                className="mt-1 text-sm text-red-600"
-              >
+              <p className="mt-1 text-sm text-naf-red font-medium">
                 {errors.password}
               </p>
             )}
@@ -161,8 +129,7 @@ export default function Login() {
           >
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition delay-[80ms] duration-[400ms] ease-in-out hover:scale-102"
-              
+              className="w-full bg-naf-red text-white font-bold py-3 rounded-xl hover:bg-[#a62b18] transition delay-[80ms] duration-[400ms] ease-in-out hover:scale-105 shadow-md"
             >
               Entrar
             </button>
@@ -170,34 +137,33 @@ export default function Login() {
         </form>
 
         <p
-          className={`text-center text-sm text-gray-600 mt-6 transition-all duration-[700ms] ease-out delay-[1150ms] ${
+          className={`text-center text-sm text-naf-gray mt-6 transition-all duration-[700ms] ease-out delay-[1150ms] ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
           Não tem conta?{" "}
-          <a href="/Cadastro" className="text-blue-600 hover:underline font-medium">
+          <a href="/Cadastro" className="text-naf-red hover:underline font-bold">
             Cadastre-se
           </a>
         </p>
 
         <p
-          className={`text-center text-sm text-gray-600 mt-2 transition-all duration-[700ms] ease-out delay-[1250ms] ${
+          className={`text-center text-sm text-naf-gray mt-2 transition-all duration-[700ms] ease-out delay-[1250ms] ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
           Esqueceu a senha?{" "}
-          <a href="/RecuperarSenha" className="text-blue-600 hover:underline font-medium">
+          <a href="/RecuperarSenha" className="text-naf-red hover:underline font-bold">
             Recuperar Senha
           </a>
         </p>
       </div>
 
       <h2
-        className={`block mb-2 mt-6 text-base font-medium text-black p-1 transition-all duration-[700ms] ease-out delay-[1350ms] ${
+        className={`block mb-2 mt-6 text-sm font-medium text-naf-gray p-1 transition-all duration-[700ms] ease-out delay-[1350ms] ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
       >
-        Desenvolvido por: <span className="font-semibold">Irmãos Metralha</span>
       </h2>
     </div>
   );
