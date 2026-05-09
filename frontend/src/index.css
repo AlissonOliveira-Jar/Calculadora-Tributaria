@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@theme {
+  --color-naf-red: #CD371F;
+  --color-naf-blue: #132436;
+  --color-naf-gray: #B2B2B2;
+  --color-naf-light: #EFEFEF;
+}
