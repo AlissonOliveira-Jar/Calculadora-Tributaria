@@ -55,13 +55,6 @@ export default function Navbar() {
               </button>
 
               <div className="h-5 w-px bg-naf-gray/50 mx-1" />
-
-              <button
-                onClick={() => navigate('/Ajuda')}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300"
-              >
-                Ajuda
-              </button>
             </div>
 
             <button

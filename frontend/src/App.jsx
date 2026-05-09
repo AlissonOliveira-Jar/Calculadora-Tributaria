@@ -21,7 +21,6 @@ function App() {
           <Route path="/calculo-pf" element={<CalculoPF />} />
           <Route path="/calculo-pj" element={<CalculoPJ />} />
           <Route path="/comparativo" element={<Comparativo />} />
-          <Route path="/Ajuda" element={<Ajuda />} />
           <Route path="*" element={<p>ERRO 404</p>} />
         </Routes>
       </div>
