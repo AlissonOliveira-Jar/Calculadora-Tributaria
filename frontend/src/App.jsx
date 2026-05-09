@@ -6,7 +6,6 @@ import RecuperarSenha from './Pages/RecuperarSenha'
 import CalculoPF from './Pages/CalculoPF'
 import CalculoPJ from './Pages/CalculoPJ'
 import Comparativo from './Pages/Comparativo'
-import Ajuda from './Pages/Ajuda'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
