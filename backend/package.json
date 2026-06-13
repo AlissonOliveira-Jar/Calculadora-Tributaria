@@ -4,7 +4,7 @@
   "description": "Backend em Node.js para a Calculadora Tributária NAF",
   "main": "src/server.js",
   "scripts": {
-    "start": "nodemon src/server.js"
+    "start": "nodemon -L src/server.js"
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
