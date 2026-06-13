@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import CalculoPF from "./Pages/CalculoPF";
 import CalculoPJ from "./Pages/CalculoPJ";
 import Comparativo from "./Pages/Comparativo";
+import Historico from "./Pages/Historico";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/calculo-pf" element={<CalculoPF />} />
         <Route path="/calculo-pj" element={<CalculoPJ />} />
         <Route path="/comparativo" element={<Comparativo />} />
+        <Route path="/historico" element={<Historico />} />
       </Routes>
     </BrowserRouter>
   );

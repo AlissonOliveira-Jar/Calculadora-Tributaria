@@ -12,7 +12,7 @@ export default function Navbar() {
 
   return (
     <nav className="w-full bg-naf-blue shadow-lg border-b border-naf-gray/20">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           
           <div 
@@ -24,45 +24,54 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1">
               <button
                 onClick={() => navigate('/Home')}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300 cursor-pointer"
+                className="px-2.5 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap"
               >
                 Página Inicial
               </button>
 
-              <div className="h-5 w-px bg-naf-gray/50 mx-1" />
+              <div className="h-5 w-px bg-naf-gray/50 opacity-40 mx-0.5" />
 
               <button
                 onClick={() => navigate('/calculo-pf')}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300 cursor-pointer"
+                className="px-2.5 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap"
               >
                 Cálculo PF
               </button>
 
-              <div className="h-5 w-px bg-naf-gray/50 mx-1" />
+              <div className="h-5 w-px bg-naf-gray/50 opacity-40 mx-0.5" />
 
               <button
                 onClick={() => navigate('/calculo-pj')}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300 cursor-pointer"
+                className="px-2.5 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap"
               >
                 Cálculo PJ
               </button>
 
-              <div className="h-5 w-px bg-naf-gray/50 mx-1" />
+              <div className="h-5 w-px bg-naf-gray/50 opacity-40 mx-0.5" />
 
               <button
                 onClick={() => navigate('/comparativo')}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300 cursor-pointer"
+                className="px-2.5 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap"
               >
                 Comparativo
+              </button>
+
+              <div className="h-5 w-px bg-naf-gray/50 opacity-40 mx-0.5" />
+
+              <button
+                onClick={() => navigate('/historico')}
+                className="px-2.5 py-2 rounded-lg text-sm font-medium text-naf-light hover:bg-naf-red hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap"
+              >
+                Histórico
               </button>
             </div>
 
             <button
               onClick={() => handleLogout()}
-              className="ml-6 px-4 py-2 bg-transparent border-2 border-naf-red text-naf-light rounded-lg text-sm font-bold hover:bg-naf-red hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer"
+              className="ml-5 px-4 py-2 bg-transparent border-2 border-naf-red text-naf-light rounded-lg text-sm font-bold hover:bg-naf-red hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer whitespace-nowrap"
             >
               Sair
             </button>
