@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 export default function Cadastro() {
   const [name, setName] = useState("");
@@ -39,10 +40,16 @@ export default function Cadastro() {
     }
     setErrors({});
 
-    // MOCK DE CADASTRO TEMPORÁRIO
-    console.log("Simulando cadastro para:", name, email);
-    alert("Cadastro simulado com sucesso! Agora você pode fazer o login.");
-    navigate("/");
+    try {
+      await api.post("/auth/register", { name, email, password });
+
+      alert("Cadastro realizado com sucesso! Agora você pode fazer o login.");
+      navigate("/login");
+
+    } catch (error) {
+      const mensagemErro = error.response?.data?.error || "Erro ao conectar com o servidor.";
+      alert(mensagemErro);
+    }
   };
 
   useEffect(() => {

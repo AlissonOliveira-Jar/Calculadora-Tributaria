@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ export default function Login() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formErrors = validateForm();
 
@@ -37,13 +38,19 @@ export default function Login() {
 
     setErrors({});
 
-    // MOCK DE LOGIN TEMPORÁRIO
-    console.log("Simulando login para:", email);
-    
-    localStorage.setItem('token', 'token-aprovado-np2');
-    localStorage.setItem('user', JSON.stringify({ email: email }));
-    
-    navigate("/Home");
+    try {
+      const response = await api.post('/auth/login', { email, password });
+
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
+      alert("Login realizado com sucesso!");
+      navigate("/Home");
+
+    } catch (error) {
+      const mensagemErro = error.response?.data?.error || "Erro ao conectar ao servidor.";
+      alert(mensagemErro);
+    }
   };
 
   return (
