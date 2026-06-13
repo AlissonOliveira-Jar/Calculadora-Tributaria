@@ -14,6 +14,8 @@ model User {
   password  String
   createdAt DateTime   @default(now())
   calculos  Calculo[]
+
+  @@map("users")
 }
 
 model Calculo {
@@ -27,4 +29,6 @@ model Calculo {
   melhorOpcao    String   // "PF" ou "PJ"
   economiaMensal Float
   createdAt      DateTime @default(now())
+
+  @@map("calculos")
 }
