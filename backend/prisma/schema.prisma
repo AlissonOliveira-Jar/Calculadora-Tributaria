@@ -24,6 +24,7 @@ model Calculo {
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   tipoProfissao  String
   faturamento    Float
+  custos         Float?
   impostoPF      Float
   impostoPJ      Float
   melhorOpcao    String   // "PF" ou "PJ"
