@@ -19,6 +19,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    command: sh ./start.sh
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     volumes:

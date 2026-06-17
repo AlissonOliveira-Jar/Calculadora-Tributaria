@@ -1,4 +1,3 @@
-
 echo "Executando migrações do Prisma..."
 npx prisma migrate deploy
 
